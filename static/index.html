@@ -1,0 +1,323 @@
+<!-- static/index.html -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PG Life — Find Your Perfect PG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #12161b;
+      --card: #ffffff;
+      --accent: #0066ff;
+      --muted: #6b7280;
+      --shadow: 0 6px 20px rgba(16, 24, 40, 0.08);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f2f6ff 0%, var(--bg) 100%);
+      color: #0f172a
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      background: transparent
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #00b3ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: var(--shadow)
+    }
+
+    .searchbar {
+      flex: 1;
+      max-width: 640px;
+      margin: 0 18px;
+      display: flex;
+      gap: 8px
+    }
+
+    .searchbar input,
+    .searchbar select {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #000000;
+      background: transparent;
+      outline: none
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow)
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      padding: 8px;
+      border-radius: 10px;
+      cursor: pointer
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 22px auto;
+      padding: 0 18px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 20px;
+      align-items: start
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .thumb {
+      height: 160px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .title {
+      font-weight: 600
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent)
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: #eef6ff;
+      color: var(--accent);
+      display: inline-block
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .card .btn {
+      padding: 8px 12px;
+      font-size: 14px
+    }
+
+    .panel {
+      position: sticky;
+      top: 22px;
+      background: var(--card);
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: var(--shadow)
+    }
+
+    .cart {
+      background: linear-gradient(180deg, #fff, #fbfeff);
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: var(--shadow)
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 760px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 30px 60px rgba(2, 6, 23, 0.3)
+    }
+
+    .empty {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted)
+    }
+
+    @media (max-width:900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        position: relative;
+        top: 0
+      }
+    }
+
+    /* small form */
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #e6eef8
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted)
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">PG</div>
+      <div>
+        <h1>PG Life</h1>
+        <div style="font-weight:12px;color:var()">Find affordable, hassle-free PG accommodations</div>
+      </div>
+    </div>
+
+    <div class="searchbar">
+      <input id="q" placeholder="Search here....." aria-label="Search" style="font-weight: bold;" />
+      <select id="typeFilter" title="All Type">
+        <option value="all" style="font-weight: bold;">All Types</option>
+        <option value="single"style="font-weight: bold;">Single</option>
+        <option value="double"style="font-weight: bold;">Double</option>
+        <option value="sharing"style="font-weight: bold;">Sharing</option>
+      </select>
+      <select id="sortBy" title="Sort">
+        <option value="relevance"style="font-weight: bold;">Sort: Relevance</option>
+        <option value="priceAsc"style="font-weight: bold;">Price: Low → High</option>
+        <option value="priceDesc"style="font-weight: bold;">Price: High → Low</option>
+      </select>
+    </div>
+
+    <div class="actions" id="authArea">
+      <!-- auth area filled by auth.js -->
+      <button class="btn" id="openLogin">Login / Register</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h2 style="margin:0">Available PGs</h2>
+          <div style="font-weight: bold;";font-size:13px" id="resultsInfo">Showing 0 results</div>
+        </div>
+
+        <div class="catalog" id="catalog">
+          <!-- cards injected here -->
+        </div>
+
+        <div id="emptyState" class="empty" style="display:none">No PGs found. Try a different city or filter.</div>
+      </section>
+
+      <aside>
+        <div class="panel">
+          <h3>bookingItems</h3>
+          <div class="cart" id="bookingPanel">
+            <div id="bookingItems">Login to see your bookings</div>
+            <div class="cart-total"
+              style="display:flex;justify-content:space-between;align-items:center;padding-top:12px">
+              <span>Total</span><span id="bookingTotal">₹0</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="panel">
+          <h3>Why PG Life?</h3>
+          <ul style="margin:8px 0;padding-left:18px;color:var(--muted)">
+            <li>Verified PGs and simple booking flow</li>
+            <li>Flexible rent &amp; secure payments</li>
+            <li>Customer support and relocation help</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="modalRoot" style="display:none"></div>
+
+  <script src="/static/auth.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
